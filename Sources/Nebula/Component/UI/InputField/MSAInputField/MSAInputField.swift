@@ -8,13 +8,13 @@
 import SwiftUI
 import Combine
 
-enum InputType {
+public enum InputType {
     case text
     case email
     case number
     case password
 
-    var keyboardType: UIKeyboardType {
+    public var keyboardType: UIKeyboardType {
         switch self {
         case .text:
             return .default
@@ -27,7 +27,7 @@ enum InputType {
         }
     }
 
-    var autocapitalization: TextInputAutocapitalization {
+    public var autocapitalization: TextInputAutocapitalization {
         switch self {
         case .email:
             return .never
@@ -36,7 +36,7 @@ enum InputType {
         }
     }
 
-    func validate(_ text: String) -> Bool {
+    public func validate(_ text: String) -> Bool {
         switch self {
         case .email:
             let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -49,7 +49,7 @@ enum InputType {
     }
 }
 
-struct MSAInputField: View {
+public struct MSAInputField: View {
     // MARK: - Properties
     @Binding var text: String
     var placeholder: String
@@ -68,7 +68,7 @@ struct MSAInputField: View {
     @State private var shakeAmount: CGFloat = 0
 
     // MARK: - Init
-    init(
+    public init(
         text: Binding<String>,
         placeholder: String,
         inputType: InputType = .text,
@@ -87,7 +87,7 @@ struct MSAInputField: View {
     }
 
     // MARK: - Body
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading, spacing: Spacing.small) {
             // Text field or Secure field based on type
             ZStack(alignment: .trailing) {
@@ -200,7 +200,7 @@ struct MSAInputField: View {
     }
 
     // MARK: - Public Methods
-    func validate() -> Bool {
+    public func validate() -> Bool {
         let isValid = inputType.validate(text)
         isError = !isValid
 
@@ -223,14 +223,14 @@ struct MSAInputField: View {
     }
 
     // TODO: need to work on the error handling
-    func setError(message: String) -> MSAInputField {
+    public func setError(message: String) -> MSAInputField {
         var field = self
         field.isError = true
         field.errorMessage = message
         return field
     }
 
-    func clearError() -> MSAInputField {
+    public func clearError() -> MSAInputField {
         var field = self
         field.isError = false
         field.errorMessage = ""

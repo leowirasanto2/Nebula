@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct SecondaryButton: View {
-    enum ButtonType: Equatable {
+public struct SecondaryButton: View {
+    public enum ButtonType: Equatable {
         case active
         case negative
         case warning
         case disabled
-        
-        var borderColor: Color {
+
+        public var borderColor: Color {
             switch self {
             case .active:
                 return ColorToken.buttonActive.color
@@ -27,8 +27,8 @@ struct SecondaryButton: View {
                 return ColorToken.buttonDisabled.color
             }
         }
-        
-        var textColor: Color {
+
+        public var textColor: Color {
             switch self {
             case .active:
                 return ColorToken.buttonActive.color
@@ -41,29 +41,29 @@ struct SecondaryButton: View {
             }
         }
     }
-    
-    enum Size {
+
+    public enum Size {
         case small
         case medium
         case large
-        
-        var height: CGFloat {
+
+        public var height: CGFloat {
             switch self {
             case .small: return 32
             case .medium: return 44
             case .large: return 56
             }
         }
-        
-        var horizontalPadding: CGFloat {
+
+        public var horizontalPadding: CGFloat {
             switch self {
             case .small: return 12
             case .medium: return 16
             case .large: return 20
             }
         }
-        
-        var typography: Typography {
+
+        public var typography: Typography {
             switch self {
             case .small: return .bodyMedium
             case .medium: return .bodyMedium
@@ -71,20 +71,20 @@ struct SecondaryButton: View {
             }
         }
     }
-    
+
     // MARK: - Properties
     let title: String
     let action: () -> Void
     let cornerRadius: CGFloat
     let size: Size
     let buttonType: ButtonType
-    
+
     // MARK: - Optional Properties with Default Values
     var borderWidth: CGFloat = 2
     var isLoading = false
-    
+
     // MARK: - Init
-    init(
+    public init(
         title: String,
         action: @escaping () -> Void,
         cornerRadius: CGFloat = 8,
@@ -97,9 +97,9 @@ struct SecondaryButton: View {
         self.size = size
         self.buttonType = buttonType
     }
-    
+
     // MARK: - Body
-    var body: some View {
+    public var body: some View {
         Button(action: {
             if buttonType != .disabled || !isLoading {
                 action()
@@ -125,16 +125,16 @@ struct SecondaryButton: View {
         .cornerRadius(cornerRadius)
         .disabled(buttonType == .disabled)
     }
-    
+
     // MARK: - Modifiers
-    func borderWidth(_ width: CGFloat) -> SecondaryButton {
+    public func borderWidth(_ width: CGFloat) -> SecondaryButton {
         var button = self
         button.borderWidth = width
         return button
     }
 
     // MARK: - Loading State
-    func loading(_ isLoading: Bool) -> SecondaryButton {
+    public func loading(_ isLoading: Bool) -> SecondaryButton {
         var button = self
         button.isLoading = isLoading
         return button
@@ -150,54 +150,54 @@ struct SecondaryButton_Previews: PreviewProvider {
                 action: {},
                 size: .small
             )
-            
+
             SecondaryButton(
                 title: "Medium Button",
                 action: {},
                 size: .medium
             )
-            
+
             SecondaryButton(
                 title: "Large Button",
                 action: {},
                 size: .large
             )
-            
+
             SecondaryButton(
                 title: "Custom Radius",
                 action: {},
                 cornerRadius: 20,
                 size: .medium
             )
-            
+
             SecondaryButton(
                 title: "Disabled Button",
                 action: {},
                 size: .medium,
                 buttonType: .disabled
             )
-            
+
             SecondaryButton(
                 title: "Warning Button",
                 action: {},
                 size: .medium,
                 buttonType: .warning
             )
-            
+
             SecondaryButton(
                 title: "Negative Button",
                 action: {},
                 size: .medium,
                 buttonType: .negative
             )
-            
+
             SecondaryButton(
                 title: "Thick Border",
                 action: {},
                 size: .medium
             )
             .borderWidth(5)
-            
+
             SecondaryButton(
                 title: "Submit",
                 action: {},

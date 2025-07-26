@@ -8,24 +8,24 @@
 import Foundation
 import SwiftUI
 
-enum ColorToken: String, CaseIterable {
+public enum ColorToken: String, CaseIterable {
     case labelDefault
     case labelStaticWhite
     case labelDisabled
-    
+
     case backgroundDefault
     case backgroundDisabled
 
     case borderDisabled
     case borderDefault
     case borderStaticWhite
-    
+
     case buttonActive // blue
     case buttonDisabled // gray disabled
     case buttonWarning // yellow
     case buttonNegative // red
-    
-    var color: Color {
+
+    public var color: Color {
         switch self {
         case .labelDefault:
             return Color(red: 0, green: 0, blue: 0)
@@ -53,21 +53,21 @@ enum ColorToken: String, CaseIterable {
             return Color(red: 1.0, green: 0.0, blue: 0.0) // Red
         }
     }
-    
-    var uiColor: UIColor {
+
+    public var uiColor: UIColor {
         UIColor(self.color)
     }
 }
 
 // Extension for SwiftUI View
-extension View {
+public extension View {
     func colorToken(_ token: ColorToken) -> some View {
         self.foregroundColor(token.color)
     }
 }
 
 // Extension for UIKit
-extension UILabel {
+public extension UILabel {
     func setColorToken(_ token: ColorToken) {
         self.textColor = token.uiColor
     }
