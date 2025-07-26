@@ -23,6 +23,17 @@ public enum NebulaIllustration: String, CaseIterable {
     case uploading = "illustration-uploading"
     case virtualReality = "illustration-virtual-reality"
     case wireframe = "illustration-wireframe"
+    case slangToTheMoon = "illustration-slang-to-the-moon"
+    case securityShield = "illustration-security-shield"
+    case listeningToFeedback = "illustration-listening-to-feedback"
+    case hotAirBalloon = "illustration-hot-air-balloon"
+    case strategy = "illustration-strategy"
+    case speedGoFast = "illustration-speed-go-fast"
+    case smartPeople = "illustration-smart-people"
+    case hotTrending = "illustration-hot-trending"
+    case beingCreative = "illustration-being-creative"
+    case designerDesk = "illustration-designer-desk"
+    case havingFun = "illustration-having-fun"
 }
 
 public extension NebulaIllustration {
