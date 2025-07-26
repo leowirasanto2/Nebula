@@ -8,28 +8,28 @@
 import Foundation
 import SwiftUI
 
-enum Spacing: CGFloat {
+public enum Spacing: CGFloat {
     case extraSmall = 4
     case small = 8
     case regular = 16
     case medium = 24
     case large = 32
-    
-    static let `default` = Spacing.regular.rawValue
+
+    public static let `default` = Spacing.regular.rawValue
 }
 
-extension View {
+public extension View {
     func paddingHorizontal(_ spacing: Spacing) -> some View {
         self.padding(.horizontal, spacing.value)
     }
-    
+
     func paddingVertical(_ spacing: Spacing) -> some View {
         self.padding(.vertical, spacing.value)
     }
 }
 
 extension Spacing: ExpressibleByFloatLiteral {
-    init(floatLiteral value: Double) {
+    public init(floatLiteral value: Double) {
         switch value {
         case Spacing.extraSmall.rawValue: self = .extraSmall
         case Spacing.small.rawValue: self = .small
@@ -42,39 +42,39 @@ extension Spacing: ExpressibleByFloatLiteral {
 }
 
 // MARK: - Add implicit conversion to CGFloat
-extension Spacing {
+public extension Spacing {
     var value: CGFloat {
         return self.rawValue
     }
 }
 
 // MARK: - Make Spacing implicitly convertible to CGFloat
-extension VStack {
+public extension VStack {
     init(alignment: HorizontalAlignment = .center, spacing: Spacing, @ViewBuilder content: @escaping () -> Content) {
         self.init(alignment: alignment, spacing: spacing.rawValue, content: content)
     }
 }
 
-extension HStack {
+public extension HStack {
     init(alignment: VerticalAlignment = .center, spacing: Spacing, @ViewBuilder content: @escaping () -> Content) {
         self.init(alignment: alignment, spacing: spacing.rawValue, content: content)
     }
 }
 
-extension LazyVStack {
+public extension LazyVStack {
     init(alignment: HorizontalAlignment = .center, spacing: Spacing, pinnedViews: PinnedScrollableViews = .init(), @ViewBuilder content: @escaping () -> Content) {
         self.init(alignment: alignment, spacing: spacing.rawValue, pinnedViews: pinnedViews, content: content)
     }
 }
 
-extension LazyHStack {
+public extension LazyHStack {
     init(alignment: VerticalAlignment = .center, spacing: Spacing, pinnedViews: PinnedScrollableViews = .init(), @ViewBuilder content: @escaping () -> Content) {
         self.init(alignment: alignment, spacing: spacing.rawValue, pinnedViews: pinnedViews, content: content)
     }
 }
 
 // MARK: - SwiftUI Extensions for Padding
-extension View {
+public extension View {
     func padding(_ spacing: Spacing) -> some View {
         self.padding(EdgeInsets(
             top: spacing.rawValue,
@@ -83,7 +83,7 @@ extension View {
             trailing: spacing.rawValue
         ))
     }
-    
+
     func padding(_ edge: Edge, _ spacing: Spacing) -> some View {
         switch edge {
         case .top:
@@ -96,10 +96,10 @@ extension View {
             return self.padding(.trailing, spacing.rawValue)
         }
     }
-    
+
     func padding(_ edges: Edge.Set, _ spacing: Spacing) -> some View {
         var edgeInsets = EdgeInsets()
-        
+
         if edges.contains(.top) {
             edgeInsets.top = spacing.rawValue
         }
@@ -112,7 +112,7 @@ extension View {
         if edges.contains(.trailing) {
             edgeInsets.trailing = spacing.rawValue
         }
-        
+
         return self.padding(edgeInsets)
     }
 }
