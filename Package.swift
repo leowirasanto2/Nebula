@@ -14,11 +14,17 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Nebula"
+            name: "Nebula",
+            path: "Sources/Nebula",
+            exclude: [],
+            resources: [
+                .process("Illustrations/IllustrationsCatalog.xcassets")
+            ]
         ),
         .testTarget(
             name: "NebulaTests",
-            dependencies: ["Nebula"]
-        ),
+            dependencies: ["Nebula"],
+            path: "Tests/NebulaTests"
+        )
     ]
 )
