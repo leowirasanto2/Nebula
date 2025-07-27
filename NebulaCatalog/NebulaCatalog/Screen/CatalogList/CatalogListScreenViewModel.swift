@@ -14,9 +14,11 @@ final class CatalogListScreenViewModel: ObservableObject {
     @Published var searchText = ""
     @Published var searchResult: [CatalogSection] = []
     @Published var isSearching = false
+    @Binding var path: NavigationPath
     private var searchCancellable: AnyCancellable?
     
-    init() {
+    init(path: Binding<NavigationPath>) {
+        self._path = path
         generateSections()
         observeSearchText()
     }
@@ -60,5 +62,10 @@ final class CatalogListScreenViewModel: ObservableObject {
                     self.searchResult = []
                 }
             }
+    }
+    
+    func navigateTo(_ selectedCatalog: CatalogComponents) {
+        let destination = selectedCatalog.toScreens()
+        path.append(destination)
     }
 }

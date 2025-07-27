@@ -6,16 +6,31 @@
 //
 
 import SwiftUI
+import Nebula
 
 struct ContentView: View {
+    @State var path = NavigationPath()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack(path: $path) {
+            CatalogListPage()
+                .environmentObject(CatalogListScreenViewModel(
+                    path: $path
+                ))
+                .navigationDestination(for: Screens.self) { destination in
+                    switch destination {
+                    case .buttonsDetail:
+                        ButtonCatalogContainer()
+                            .environmentObject(ButtonCatalogViewModel())
+                    default:
+                        VStack {
+                            NebulaIllustration.virtualReality.image
+                            Text("Still in progress")
+                                .typography(.bodyRegular)
+                        }
+                    }
+                }
         }
-        .padding()
     }
 }
 

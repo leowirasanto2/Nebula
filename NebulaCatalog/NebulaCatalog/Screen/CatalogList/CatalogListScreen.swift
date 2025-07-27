@@ -13,7 +13,6 @@ struct CatalogListPage: View {
     var body: some View {
         VStack {
             ScrollView {
-                
                 if !model.isSearching {
                     HStack(spacing: .medium) {
                         VStack(alignment: .leading) {
@@ -32,6 +31,7 @@ struct CatalogListPage: View {
                             }
                     }
                     .paddingHorizontal(.regular)
+                    .paddingVertical(.regular)
                 } else {
                     MSAInputField(
                         text: $model.searchText,
@@ -63,13 +63,15 @@ struct CatalogListPage: View {
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(radius: 1)
+        .onTapGesture {
+            model.navigateTo(component)
+        }
     }
     
     @ViewBuilder
     private var allComponents: some View {
         ForEach(model.sections, id: \.id) { section in
             VStack(alignment: .leading) {
-                
                 Text(section.title)
                     .typography(.titleRegular)
                     .colorToken(.labelDefault)
@@ -114,5 +116,5 @@ struct CatalogListPage: View {
 
 #Preview {
     CatalogListPage()
-        .environmentObject(CatalogListScreenViewModel())
+        .environmentObject(CatalogListScreenViewModel(path: .constant(NavigationPath())))
 }
