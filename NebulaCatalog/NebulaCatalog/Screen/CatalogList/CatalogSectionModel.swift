@@ -12,7 +12,7 @@ import Nebula
 struct CatalogSection {
     var id: String
     var title: String
-    var components: [Components]
+    var components: [CatalogComponents]
 }
 
 extension CatalogSection {
@@ -20,42 +20,42 @@ extension CatalogSection {
         .init(
             id: "ui-section",
             title: "UI Component",
-            components: Components.uiSection
+            components: CatalogComponents.uiSection
         ),
         .init(
             id: "ic-illustration-section",
             title: "Icon or Illustration",
-            components: Components.iconOrIllustrations
+            components: CatalogComponents.iconOrIllustrations
         ),
         .init(
             id: "style-section",
             title: "Style",
-            components: Components.styleSection
+            components: CatalogComponents.styleSection
         ),
         .init(
             id: "Spacing",
             title: "Spacing",
-            components: Components.spacingSection
+            components: CatalogComponents.spacingSection
         )
     ]
 }
 
-extension Components {
-    static let uiSection: [Components] = [
+extension CatalogComponents {
+    static let uiSection: [CatalogComponents] = [
         .buttons,
         .inputFields
     ]
     
-    static let iconOrIllustrations: [Components] = [
+    static let iconOrIllustrations: [CatalogComponents] = [
         .illustrations
     ]
     
-    static let styleSection: [Components] = [
+    static let styleSection: [CatalogComponents] = [
         .colorTokens,
         .typographys
     ]
     
-    static let spacingSection: [Components] = [
+    static let spacingSection: [CatalogComponents] = [
         .spacing
     ]
 }

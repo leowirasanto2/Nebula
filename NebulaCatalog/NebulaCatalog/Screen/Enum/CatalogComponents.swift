@@ -1,5 +1,5 @@
 //
-//  Components.swift
+//  CatalogComponents.swift
 //  NebulaCatalog
 //
 //  Created by Leo Wirasanto Laia on 27/07/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Components: Equatable, CaseIterable {
+enum CatalogComponents: Equatable, CaseIterable {
     case inputFields
     case buttons
     case illustrations
