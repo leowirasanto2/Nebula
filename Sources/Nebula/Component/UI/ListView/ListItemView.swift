@@ -9,12 +9,28 @@ import Foundation
 import SwiftUI
 
 public struct ListItemViewConfig {
-    public var checkboxStyle: NebulaCheckboxStyle = .primary
+    public var checkboxStyle: NebulaCheckboxStyle
     public var title: String?
     public var subtitle: String?
     public var tertiaryTitle: String?
-    public var isLeadingIconVisible: Bool = true
-    public var isTrailingIconVisible: Bool = true
+    public var isLeadingIconVisible: Bool
+    public var isTrailingIconVisible: Bool
+
+    public init(
+        checkboxStyle: NebulaCheckboxStyle = .primary,
+        title: String? = nil,
+        subtitle: String? = nil,
+        tertiaryTitle: String? = nil,
+        isLeadingIconVisible: Bool = true,
+        isTrailingIconVisible: Bool = true
+    ) {
+        self.checkboxStyle = checkboxStyle
+        self.title = title
+        self.subtitle = subtitle
+        self.tertiaryTitle = tertiaryTitle
+        self.isLeadingIconVisible = isLeadingIconVisible
+        self.isTrailingIconVisible = isTrailingIconVisible
+    }
 }
 
 public enum ListItemType {
