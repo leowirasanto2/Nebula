@@ -27,7 +27,7 @@ public struct ListItemView: View {
     @State private var checked: Bool = false
     @State var type: ListItemType
     
-    init(type: ListItemType) {
+    public init(type: ListItemType) {
         self.type = type
     }
     
