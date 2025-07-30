@@ -1,3 +1,4 @@
+
 ## How to Use
 
 ### Adding Nebula via Swift Package Manager
@@ -100,7 +101,7 @@ struct ContentView: View {
     struct InputFieldExample: View {
         @State private var email = ""
         @State private var password = ""
-        
+
         var body: some View {
         VStack(spacing: Spacing.large) {
             MSAInputField(
@@ -108,7 +109,7 @@ struct ContentView: View {
             placeholder: "Email address",
             inputType: .email
             )
-            
+
             MSAInputField(
             text: $password,
             placeholder: "Password",
@@ -132,7 +133,7 @@ struct ContentView: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(height: 200)
-            
+
             Text("Business Deal Illustration")
             .typography(.subtitle)
         }
