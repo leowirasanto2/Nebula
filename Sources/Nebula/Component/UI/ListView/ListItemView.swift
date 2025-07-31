@@ -40,11 +40,12 @@ public enum ListItemType {
 
 public struct ListItemView: View {
     @State private var isCheckboxVisible: Bool = false
-    @State private var checked: Bool = false
+    @Binding var checked: Bool
     @State var type: ListItemType
     
-    public init(type: ListItemType) {
+    public init(type: ListItemType, checked: Binding<Bool> = .constant(false)) {
         self.type = type
+        self._checked = checked
     }
     
     public var body: some View {
