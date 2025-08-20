@@ -14,30 +14,35 @@ public struct SecondaryButton: View {
         case negative
         case warning
         case disabled
+        case defaultButton
 
         public var borderColor: Color {
             switch self {
             case .active:
-                return ColorToken.buttonActive.color
+                return ColorToken.buttonPositive.color
             case .negative:
                 return ColorToken.buttonNegative.color
             case .warning:
                 return ColorToken.buttonWarning.color
             case .disabled:
                 return ColorToken.buttonDisabled.color
+            case .defaultButton:
+                return ColorToken.buttonPrimary.color
             }
         }
 
         public var textColor: Color {
             switch self {
             case .active:
-                return ColorToken.buttonActive.color
+                return ColorToken.buttonPositive.color
             case .negative:
                 return ColorToken.buttonNegative.color
             case .warning:
                 return ColorToken.buttonWarning.color
             case .disabled:
                 return ColorToken.buttonDisabled.color
+            case .defaultButton:
+                return ColorToken.buttonPrimary.color
             }
         }
     }

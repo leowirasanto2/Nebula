@@ -104,11 +104,11 @@ public struct MSAInputField: View {
                     }
                 }
                 .padding()
-                .background(ColorToken.backgroundDefault.color.opacity(0.2))
+                .background(ColorToken.backgroundPrimary.color.opacity(0.2))
                 .cornerRadius(cornerRadius)
                 .overlay(
                     RoundedRectangle(cornerRadius: cornerRadius)
-                        .stroke(isError ? ColorToken.buttonNegative.color : ColorToken.borderDefault.color,
+                        .stroke(isError ? ColorToken.buttonNegative.color : ColorToken.borderPrimary.color,
                                 lineWidth: borderWidth)
                 )
                 .onChange(of: text) { oldValue, newValue in

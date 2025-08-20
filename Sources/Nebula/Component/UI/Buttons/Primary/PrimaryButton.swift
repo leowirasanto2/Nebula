@@ -14,17 +14,20 @@ public struct PrimaryButton: View {
         case negative
         case warning
         case disabled
+        case defaultButton
 
         public var background: Color {
             switch self {
             case .active:
-                return ColorToken.buttonActive.color
+                return ColorToken.buttonPositive.color
             case .negative:
                 return ColorToken.buttonNegative.color
             case .warning:
                 return ColorToken.buttonWarning.color
             case .disabled:
                 return ColorToken.buttonDisabled.color
+            case .defaultButton:
+                return ColorToken.buttonPrimary.color
             }
         }
     }
@@ -67,8 +70,8 @@ public struct PrimaryButton: View {
     let buttonType: ButtonType
 
     // MARK: - Optional Properties with Default Values
-    var foregroundColor: Color = ColorToken.labelStaticWhite.color
-    var backgroundColor: Color = ColorToken.buttonActive.color
+    var foregroundColor: Color = ColorToken.staticWhite.color
+    var backgroundColor: Color = ColorToken.buttonPositive.color
     var isLoading = false
 
     // MARK: - Init
@@ -77,7 +80,7 @@ public struct PrimaryButton: View {
         action: @escaping () -> Void,
         cornerRadius: CGFloat = 8,
         size: Size = .medium,
-        buttonType: ButtonType = .active
+        buttonType: ButtonType = .defaultButton
     ) {
         self.title = title
         self.action = action
@@ -96,11 +99,11 @@ public struct PrimaryButton: View {
             HStack {
                 if isLoading {
                     ProgressView()
-                        .tint(ColorToken.labelStaticWhite.color)
+                        .tint(ColorToken.staticWhite.color)
                 } else {
                     Text(title)
                         .typography(size.typography)
-                        .colorToken(.labelStaticWhite)
+                        .colorToken(.staticWhite)
                 }
             }
             .frame(maxWidth: .infinity, minHeight: size.height)
@@ -137,28 +140,32 @@ struct PrimaryButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: Spacing.default) {
             PrimaryButton(
-                title: "Small Button",
+                title: "Small - Default",
                 action: {},
-                size: .small
+                size: .small,
+                buttonType: .defaultButton
             )
 
             PrimaryButton(
-                title: "Medium Button",
+                title: "Medium - Warning",
                 action: {},
-                size: .medium
+                size: .medium,
+                buttonType: .warning
             )
 
             PrimaryButton(
-                title: "Large Button",
+                title: "Large Button - Default",
                 action: {},
-                size: .large
+                size: .large,
+                buttonType: .defaultButton
             )
 
             PrimaryButton(
-                title: "Custom Radius",
+                title: "Custom Radius - Active",
                 action: {},
                 cornerRadius: 20,
-                size: .medium
+                size: .medium,
+                buttonType: .active
             )
 
             PrimaryButton(
@@ -174,6 +181,13 @@ struct PrimaryButton_Previews: PreviewProvider {
                 size: .medium
             )
             .loading(true)
+            
+            PrimaryButton(
+                title: "Negative Button",
+                action: {},
+                size: .large,
+                buttonType: .negative
+            )
         }
         .padding()
     }
