@@ -85,11 +85,11 @@ public struct ListItemView: View {
                     .frame(width: 45, height: 45)
             },
             middle: {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text("Custom Component")
-                        .font(.headline)
+                        .typography(.titleMedium)
                     Text("Using ViewBuilder syntax")
-                        .font(.subheadline)
+                        .typography(.captionRegular)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             },
