@@ -40,6 +40,7 @@ public struct BannerCarousel: View {
             .frame(width: bannerSize.width, height: bannerSize.height)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .elevate()
             
             indicatorView
         }
@@ -63,7 +64,7 @@ public struct BannerCarousel: View {
 }
 
 #Preview {
-    BannerCarousel(model: .init(type: .squared, items: BannerModel.dummyBanners))
+    BannerCarousel(model: .init(type: .rectangled, items: BannerModel.dummyBanners))
 }
 
 extension BannerModel {
