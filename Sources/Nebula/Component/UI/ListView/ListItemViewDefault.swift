@@ -35,7 +35,7 @@ public struct ListItemViewDefault: View {
                         .typography(.titleRegular)
                         .font(.headline)
                         .lineLimit(1)
-                        .foregroundColor(ColorToken.labelDefault.color)
+                        .colorToken(.typographyPrimary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 
@@ -44,17 +44,18 @@ public struct ListItemViewDefault: View {
                         .typography(.bodyRegular)
                         .font(.subheadline)
                         .lineLimit(2)
-                        .foregroundColor(ColorToken.labelDisabled.color)
+                        .colorToken(.typopraphySecondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                 }
                 
                 if let tertiaryTitle = config.tertiaryTitle {
                     Text(tertiaryTitle)
-                        .typography(.captionMedium)
+                        .typography(.captionRegular)
                         .font(.subheadline)
                         .lineLimit(1)
-                        .foregroundColor(ColorToken.labelDisabled.color)
+                        .colorToken(.typographyDisabled)
+                        .foregroundColor(ColorToken.typographyDisabled.color)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -76,14 +77,14 @@ public struct ListItemViewDefault: View {
     
     private func getInitialTitleBgColor(_ title: String?) -> Color {
         guard let title, !title.isEmpty else {
-            return ColorToken.backgroundDefault.color
+            return ColorToken.backgroundPrimary.color
         }
         let firstCharacter = String(title.prefix(1)).uppercased()
         let toAlphabetColor = AlphabethColor(rawValue: firstCharacter) ?? .letterA
         let colorToken = AlphabethColor.allCases.first { color in
             color == toAlphabetColor
         }
-        return colorToken?.identityColor ?? ColorToken.backgroundDefault.color
+        return colorToken?.identityColor ?? ColorToken.backgroundPrimary.color
         
     }
     
@@ -96,7 +97,7 @@ public struct ListItemViewDefault: View {
                 .overlay {
                     Text(initialTitle)
                         .typography(.titleLarge)
-                        .foregroundStyle(ColorToken.labelStaticWhite.color)
+                        .foregroundStyle(ColorToken.staticWhite.color)
                 }
         } else {
             EmptyView()

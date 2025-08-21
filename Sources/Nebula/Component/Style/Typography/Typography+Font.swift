@@ -12,7 +12,7 @@ public extension Typography {
         switch self {
         // Title styles
         case .titleRegular:
-            return .NebulaFonts.fixed(.semibold, size: .large)
+            return .NebulaFonts.fixed(.regular, size: .large)
         case .titleLarge:
             return .NebulaFonts.fixed(.bold, size: .extraLarge2)
         case .titleMedium:

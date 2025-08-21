@@ -12,14 +12,14 @@ public enum NebulaCheckboxStyle {
     case secondary
     case disabled
     
-    public var foregroundColor: Color {
+    public var colorToken: ColorToken {
         switch self {
         case .primary:
-            return ColorToken.checkboxPrimary.color
+            return ColorToken.buttonPrimary
         case .secondary:
-            return ColorToken.checkboxSecondary.color
+            return ColorToken.buttonSecondary
         case .disabled:
-            return ColorToken.checkboxDisabled.color
+            return ColorToken.buttonDisabled
         }
     }
 }
@@ -35,11 +35,11 @@ public struct NebulaCheckbox: View {
             if isChecked {
                 Image(systemName: "checkmark.square.fill")
                     .imageScale(.large)
-                    .foregroundColor(style.foregroundColor)
+                    .colorToken(style.colorToken)
             } else {
                 Image(systemName: "checkmark.square")
                     .imageScale(.large)
-                    .foregroundColor(ColorToken.labelDisabled.color)
+                    .colorToken(ColorToken.borderPrimary)
             }
         }
     }
@@ -47,5 +47,8 @@ public struct NebulaCheckbox: View {
 
 #Preview {
     @Previewable @State var isChecked: Bool = false
-    NebulaCheckbox(isChecked: $isChecked, style: .primary)
+    VStack {
+        NebulaCheckbox(isChecked: $isChecked, style: .primary)
+    }
+        
 }
